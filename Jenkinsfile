@@ -14,5 +14,6 @@ node {
 
       stage('Docker Image'){
         sh 'docker build -t temus/load-balancer:1.0.0 .'
+      }
 
 }
