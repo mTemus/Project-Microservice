@@ -10,4 +10,9 @@ node {
         def mvnCMD = "${mvnHome}/bin/mvn"
         sh "${mvnCMD} clean install"
       }
+
+
+      stage('Docker Image'){
+        sh 'docker build -t temus/load-balancer:1.0.0 .'
+
 }
