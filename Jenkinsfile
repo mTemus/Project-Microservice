@@ -19,8 +19,8 @@ node {
       }
 
       stage('Pushing docker Image'){
-        withCredentials([file(credentialsId: '1f669aa4-994e-4792-ba39-ac27a60f0e98', variable: 'dockerhubpasswd')]) {
-          sh "docker login -u temus -p ${dockerhubpasswd}"
+        withCredentials([file(credentialsId: 'docker', variable: 'dockerHub')]) {
+          sh "docker login -u temus -p ${dockerHub}"
         }
         sh 'docker push temus/load-balancer:1.0'
       }
