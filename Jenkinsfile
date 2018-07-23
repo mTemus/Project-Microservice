@@ -13,14 +13,16 @@ node {
 
 
       stage('Building docker Image'){
+        sh 'docker rmi temus/load-balancer:latest'
+        sh 'docker rmi temus/load-balancer:1.0'
         sh 'docker build -t temus/load-balancer:latest -t temus/load-balancer:1.0 .'
       }
 
       stage('Pushing docker Image'){
         withCredentials([file(credentialsId: 'docker', variable: 'dockerhub')]) {
           sh "docker login -u temus -p ${dockerhub}"
-          sh 'docker push temus/load-balancer:1.0'
         }
 
+        sh 'docker push temus/load-balancer:1.0'
       }
 }
