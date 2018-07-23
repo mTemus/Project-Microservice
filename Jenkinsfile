@@ -22,4 +22,9 @@ node {
             }
             sh 'docker push temus/load-balancer:latest'
           }
+
+          stage('Building docker Container'){
+            sh 'docker run --name load-balancer --network host -d temus/load-balancer:latest'
+          }
+
     }
