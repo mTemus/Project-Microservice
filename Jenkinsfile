@@ -13,8 +13,6 @@ node {
 
 
           stage('Building docker Image'){
-            sh 'docker rmi temus/load-balancer:latest'
-            sh 'docker rmi temus/load-balancer:1.0'
             sh 'docker build -t temus/load-balancer:latest -t temus/load-balancer:1.0 .'
           }
 
