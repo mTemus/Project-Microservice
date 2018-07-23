@@ -17,7 +17,7 @@ node {
       }
 
       stage('Pushing docker Image'){
-        withCredentials([string(credentialsId: 'dockerh', variable: 'docker')]) { {
+        withCredentials([string(credentialsId: 'dockerh', variable: 'docker')]) {
           sh "docker login -u temus -p ${docker}"
         }
 
