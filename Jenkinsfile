@@ -5,15 +5,22 @@ node {
       }
 
 
-      stage('Maven Package'){
+      stage('Building maven Package'){
         def mvnHome = tool name: 'maven-3', type: 'maven'
         def mvnCMD = "${mvnHome}/bin/mvn"
         sh "${mvnCMD} clean install"
       }
 
 
-      stage('Docker Image'){
-        sh 'docker build -t temus/load-balancer:1.0.0 .'
+      stage('Building docker Image'){
+        sh 'docker build -t temus/load-balancer:1.0.'
       }
 
+      stage('Pushing docker Image'){
+        withCredentials([string(credentialsId: '', variable: 'docker-hub-pwd')]) {
+          sh "docker login -u temus -p ${docker-hub-pwd}"
+        }
+
+        sh 'docker push temus/load-balancer:1.0'
+      }
 }
