@@ -22,6 +22,6 @@ node {
             withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
               sh "docker login -u temus -p ${dockerHubPwd}"
             }
-            sh 'docker push temus/load-balancer:1.0'
+            sh 'docker push temus/load-balancer:latest'
           }
     }
